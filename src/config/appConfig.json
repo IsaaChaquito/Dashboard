@@ -1,0 +1,14 @@
+{
+  "company": "eXess Ltd.",
+  "theme": {
+    "primary": "#2563eb",
+    "background": "#f9fafb",
+    "text": "#1f2937"
+  },
+  "menu": [
+    { "label": "Dashboard", "icon": "HomeIcon", "path": "/dashboard" },
+    { "label": "Ventas", "icon": "ShoppingCartIcon", "path": "/ventas" },
+    { "label": "Inventario", "icon": "CubeIcon", "path": "/inventario" },
+    { "label": "Empleados", "icon": "UsersIcon", "path": "/empleados" }
+  ]
+}
