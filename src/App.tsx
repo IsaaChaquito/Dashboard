@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Layout from './components/Layout/Layout'
 
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -26,7 +27,13 @@ function App() {
 
 
     // </div>
-    <Layout children={<h1>Content</h1>}></Layout>
+
+    <Layout 
+      children={
+        <div className='h-screend'>Content</div>
+      }>
+
+    </Layout>
   )
 }
 

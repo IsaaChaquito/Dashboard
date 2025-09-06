@@ -9,6 +9,11 @@
     { "label": "Dashboard", "icon": "HomeIcon", "path": "/dashboard" },
     { "label": "Ventas", "icon": "ShoppingCartIcon", "path": "/ventas" },
     { "label": "Inventario", "icon": "CubeIcon", "path": "/inventario" },
-    { "label": "Empleados", "icon": "UsersIcon", "path": "/empleados" }
+    { "label": "Empleados", "icon": "UsersIcon", "path": "/empleados" },
+    { "label": "Prestamos", "icon": "BanknotesIcon", "path": "/prestamos" },
+    { "label": "Pedidos", "icon": "CubeTransparentIcon", "path": "/pedidos" },
+    { "label": "Herramientas", "icon": "WrenchScrewdriverIcon", "path": "/herramientas" },
+    { "label": "Productos", "icon": "UsersIcon", "path": "/productos" },
+    { "label": "Configuración", "icon": "Cog6ToothIcon", "path": "/configuracion" }
   ]
 }

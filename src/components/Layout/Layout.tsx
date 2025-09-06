@@ -26,6 +26,9 @@ export default function Layout({ children }: LayoutProps) {
     const handleResize = () => {
       if (window.innerWidth >= 640) {
         setIsSidebarOpen(false);
+        document.documentElement.style.setProperty("--sidebar-width", "220px");
+      }else{
+        document.documentElement.style.setProperty("--sidebar-width", "65px");
       }
     };
     window.addEventListener("resize", handleResize);
@@ -38,8 +41,21 @@ export default function Layout({ children }: LayoutProps) {
     <div className="flex flex-col h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       <div className="flex flex-1">
-        <Sidebar menu={appConfig.menu} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-        <main className={`flex-1d overflow-y-auto p-4 w-full bg-blue-200 duration-150 ${isSidebarOpen ? '-translate-x-[var(--sidebar-width)] ': 'translate-x-0'}`}>{children}</main>
+        <Sidebar 
+          // className="bg-red-200!" 
+          company={appConfig.company}
+          menu={appConfig.menu} 
+          isOpen={isSidebarOpen} 
+          setIsOpen={setIsSidebarOpen} 
+        />
+        
+        <main className={`z-10 fixed top-[var(--header-height)] left-[var(--sidebar-width)] bottom-[var(--footer-height)] right-0 flex-1d overflow-y-auto p-4  bg-black/40 duration-150 
+          ${isSidebarOpen ? '-translate-x-[var(--sidebar-width)]d': 'translate-x-0d'}
+          `}>
+          <div className="overflow-y-auto h-full">
+            {children}
+          </div>
+        </main>
       </div>
       <Footer />
     </div>
