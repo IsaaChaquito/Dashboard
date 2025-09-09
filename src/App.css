@@ -33,6 +33,7 @@
 
   /* standar widths */
   --sidebar-width: 220px;
+  --sidebar-short-width: 60px;
   --header-height: 60px;
   --footer-height: 53px;
 }

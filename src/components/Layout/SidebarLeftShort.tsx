@@ -21,24 +21,25 @@ interface SidebarProps {
   className?: string;
 }
 
-export default function Sidebar({ company = "My Company", menu, isOpen, className }: SidebarProps) {
+export default function SidebarShort({ company = "My Company", menu, isOpen, className }: SidebarProps) {
   return (
     <aside
-      className={`${className || ""} z-20 fixed top-[var(--header-height)] left-0 hidden sm:inline sm:w-[var(--sidebar-width)] md:inline md:w-[var(--sidebar-width)] bottom-[calc(var(--footer-height)+var(--header-height))] h-[calc(100%-var(--header-height)-var(--footer-height))]  bg-white shadow-lgd transition-transform transform overflow-y-hidden duration-150
+      className={`${className || ""} z-20 fixed top-[var(--header-height)] left-0 bottom-[var(--footer-height)] h-fulld w-[var(--sidebar-short-width)] bg-white shadow-lg transition-transform transform
       ${isOpen ? "translate-x-0d" : "-translate-x-fulld"} md:translate-x-0d`}
     >
-      {/* <h1 className="p-4 sm:p-2.5 font-bold text-lg sm:text-base">{company}</h1> */}
-      <nav className="sm:py-4 sm:px-3.5 md:p-4 space-y-2 h-[calc(100%-var(--header-height))]d h-full relative flex flex-col last:self-end overflow-y-hidden">
+      <div className="p-4 font-bold text-lg border-b">{company}</div>
+      <nav className="p-3 space-y-2">
         {menu.map((item) => {
           const Icon = icons[item.icon] || HomeIcon;
           return (
             <Link
+              title={item.label}
               key={item.path}
               to={item.path}
-              className="flex items-center gap-3 p-2 rounded hover:bg-gray-100 last:bottom-[var(--footer-height)]d last:fixedd last:w-[calc(var(--sidebar-width))]d"
+              className="flex items-center gap-3 p-2 rounded hover:bg-gray-100 last:bottom-0 last:fixed"
             >
               <Icon className="w-5 h-5" />
-              <p className="hidden md:inline">{item.label}</p>
+              {/* {item.label} */}
             </Link>
           );
         })}
