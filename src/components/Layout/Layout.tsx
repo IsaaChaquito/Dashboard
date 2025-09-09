@@ -28,53 +28,34 @@ export default function Layout({ children }: LayoutProps) {
 
 
   useEffect(() => {
+
+    if(!window?.innerWidth) return;
     const handleResize = () => {
-      if (window.innerWidth <= 640) {
+      console.log('cuajé');
+      if (window.innerWidth < 640) {
         document.documentElement.style.setProperty("--sidebar-width", "0px");
-      }else if (window.innerWidth > 640 && window.innerWidth <= 768) {
+      }else if (window.innerWidth >= 640 && window.innerWidth < 768) {
         // setIsSidebarOpen(false);
         document.documentElement.style.setProperty("--sidebar-width", "65px");
       }else{
         document.documentElement.style.setProperty("--sidebar-width", "220px");
       }
     };
+
+    handleResize(); // Initial check
+
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (window?.innerWidth >= 640) {
-  //     setIsSidebarOpen(true);
-  //     document.documentElement.style.setProperty("--sidebar-width", "220px");
-  //   }else{
-  //     document.documentElement.style.setProperty("--sidebar-width", "60px");
-  //   }
-  // }, [window?.innerWidth]);
 
   return (
     <div className="flex flex-col h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       <div className="flex flex-1">
-        {/* {SidebarTypeToggle()} */}
-        {/* {
-          window?.innerWidth >= 640 
-          ? <Sidebar 
-          // className="bg-red-200!" 
-          company={appConfig.company}
-          menu={appConfig.menu} 
-          isOpen={isSidebarOpen} 
-          setIsOpen={setIsSidebarOpen} 
-        /> 
-          : <SidebarShort 
-          // className="bg-red-200!" 
-          company={appConfig.company}
-          menu={appConfig.menu} 
-          isOpen={isSidebarOpen} 
-          setIsOpen={setIsSidebarOpen} 
-        />
-        } */}
+
         <Sidebar 
           // className="bg-red-200!" 
           company={appConfig.company}
@@ -83,8 +64,6 @@ export default function Layout({ children }: LayoutProps) {
           setIsOpen={setIsSidebarOpen} 
         />
         
-          
-
         <main 
         className={`z-10 fixed top-[var(--header-height)] left-[var(--sidebar-width)] bottom-[var(--footer-height)] right-0 flex-1d overflow-y-auto py-4 pl-4 pr-0.5  bg-black/40 duration-150 
           ${isSidebarOpen ? '-translate-x-[var(--sidebar-width)]d': 'translate-x-0d'}
