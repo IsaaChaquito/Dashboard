@@ -1,10 +1,10 @@
-import { useState } from 'react'
+
 import './App.css'
 import Layout from './components/Layout/Layout'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     // <div className='APP-CONTAINER flex justify-center w-full min-h-screen bg-gray-400 text-center'>

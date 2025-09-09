@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../Layout/SidebarLeft";
-import SidebarShort from "../Layout/SidebarLeftShort";
 import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
 
@@ -18,7 +17,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [theme, setTheme] = useState(appConfig.theme);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
 
   useEffect(() => {
     document.documentElement.style.setProperty("--color-primary", theme.primary);
@@ -26,13 +25,7 @@ export default function Layout({ children }: LayoutProps) {
     document.documentElement.style.setProperty("--color-text", theme.text);
   }, [theme]);
 
-  function SidebarTypeToggle() {
-    if (windowWidth >= 640) {
-      return <Sidebar company={appConfig.company} menu={appConfig.menu} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />;
-    } else {
-      return <SidebarShort company={appConfig.company} menu={appConfig.menu} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />;
-    }
-  }
+
 
   useEffect(() => {
     const handleResize = () => {
