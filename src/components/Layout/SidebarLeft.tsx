@@ -1,6 +1,7 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import type { MenuItem } from "../../types/config";
 import { HomeIcon, ShoppingCartIcon, CubeIcon, UsersIcon, Cog6ToothIcon, BanknotesIcon, CubeTransparentIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
+import { useUIStore } from "../../stores/ui/ui.store";
 
 const icons: Record<string, React.ComponentType<{ className?: string }>> = {
   HomeIcon,
@@ -16,31 +17,34 @@ const icons: Record<string, React.ComponentType<{ className?: string }>> = {
 interface SidebarProps {
   company?: string;
   menu: MenuItem[];
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
+  isOpen?: boolean;
+  setIsOpen?: (open: boolean) => void;
   className?: string;
 }
 
-export default function Sidebar({ company = "My Company", menu, isOpen, className }: SidebarProps) {
+export default function Sidebar({ company = "My Company", menu, className }: SidebarProps) {
+
+  const isSidebarOpen = useUIStore(state => state.sidebarOpen);
+
+
   return (
     <aside
-      className={`${className || ""} z-20 fixed top-[var(--header-height)] left-0 hidden sm:inline sm:w-[var(--sidebar-width)] md:inline md:w-[var(--sidebar-width)] bottom-[calc(var(--footer-height)+var(--header-height))] h-[calc(100%-var(--header-height)-var(--footer-height))]  bg-white shadow-lgd transition-transform transform overflow-y-hidden duration-150
-      ${isOpen ? "translate-x-0d" : "-translate-x-fulld"} md:translate-x-0d`}
+      className={`${className || ""} ${isSidebarOpen ? " sm:inline sm:w-[var(--sidebar-width)] md:inline md:w-[var(--sidebar-width)] " : " hidden sm:inline sm:w-[var(--sidebar-width)] md:inline md:w-[var(--sidebar-width)]"} fixed z-20 top-[var(--header-height)] left-0 bottom-[calc(var(--footer-height)+var(--header-height))] h-[calc(100%-var(--header-height)-var(--footer-height))]  bg-white shadow-lg transition-transform transform overflow-y-hidden duration-150`}
     >
       {/* <h1 className="p-4 sm:p-2.5 font-bold text-lg sm:text-base">{company}</h1> */}
-      <nav className="px-3.5 py-4 space-y-2 h-[calc(100%-var(--header-height))]d h-full relative flex flex-col last:self-end overflow-y-hidden">
+      <nav className="px-3.5 py-4 space-y-2 h-full relative flex flex-col last:self-end overflow-y-hidden">
         {menu.map((item) => {
           const Icon = icons[item.icon] || HomeIcon;
           return (
-            <Link
+            <NavLink
               title={item.label}
               key={item.path}
               to={item.path}
-              className="flex items-center gap-3 p-2 rounded hover:bg-gray-100 h-10"
+              className={({ isActive }) => (isActive ? "ringd ring-gray-400 bg-blue-300 [box-shadow:rgba(0,_0,_0,_0.15)_1.95px_1.95px_2.6px]" : "hover:bg-gray-100") + " flex items-center gap-3 p-2 rounded  h-10 " }
             >
-              <Icon className="w-5 h-5" />
-              <p className="hidden md:inline text-base">{item.label}</p>
-            </Link>
+              <Icon className="size-5" />
+              <p className={`${isSidebarOpen ? "block" : "hidden"} text-base`}>{item.label}</p>
+            </NavLink>
           );
         })}
       </nav>
