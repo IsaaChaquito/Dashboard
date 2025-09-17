@@ -2,16 +2,18 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import { useUIStore } from "../../stores/ui/ui.store";
 
 interface HeaderProps {
-  onMenuToggle: () => void;
+  onMenuToggle?: () => void;
 }
 
-export default function Header() {
+export default function Header({ onMenuToggle }: HeaderProps) {
 
   const toggleSidebar = useUIStore( state => state.toggleSidebar );
 
+  const handleOnMenuToggle = () => onMenuToggle?.();  
+
   return (
     <header className="fixed top-0 left-0 w-full h-[var(--header-height)] flex items-center justify-between p-4 bg-[var(--color-primary)] text-white">
-      <button className="md:hidden  rounded cursor-pointer" onClick={ toggleSidebar }>
+      <button className="  rounded cursor-pointer" onClick={ toggleSidebar ?? handleOnMenuToggle }>
         <Bars3Icon className="size-8" />
       </button>
       <h1 className="text-lg font-semibold">Dashboard</h1>
