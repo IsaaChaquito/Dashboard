@@ -46,7 +46,7 @@ export default function Layout({ children }: LayoutProps) {
         <main 
         className={`z-10 fixed ${isSidebarOpen && res === screenResolution.movil ? 'left-0' : 'left-[var(--sidebar-width)]' }  top-[var(--header-height)] left-[var(--sidebar-width)]d bottom-[var(--footer-height)] right-0 flex-1d overflow-y-auto py-4 pl-4 pr-0.5  bg-black/40d duration-150
           `}>
-            <SimpleBar  className="h-full" >
+            <SimpleBar className="h-full" >
               {/* <div className=" overflow-y-autod h-full"> */}
                 {children}
               {/* </div> */}

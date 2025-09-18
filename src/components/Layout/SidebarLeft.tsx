@@ -38,7 +38,7 @@ export default function Sidebar({ menu, className }: SidebarProps) {
   function toggleTitles(){
     
     if( resType === screenResolution.movil || resType === screenResolution.tablet ){
-      return isSidebarOpen ? "block text-base" : "hidden"
+      return isSidebarOpen ? "block text-base truncate" : "hidden"
     }
 
     if( resType === screenResolution.desktop ){
@@ -80,7 +80,7 @@ export default function Sidebar({ menu, className }: SidebarProps) {
         className={`${className || ""} pointer-events-auto w-[var(--sidebar-width)] fixed z-20 top-[var(--header-height)] left-0 bottom-[calc(var(--footer-height)+var(--header-height))] h-[calc(100%-var(--header-height)-var(--footer-height))]  bg-white shadow-lg overflow-y-hidden transition-transform transform duration-150`}
       >
         {/* <h1 className="p-4 sm:p-2.5 font-bold text-lg sm:text-base">{company}</h1> */}
-        <nav className="px-3.5 py-4 space-y-2 h-full relative flex flex-col last:self-end overflow-y-hidden">
+        <nav className="p-2.5 py-4 space-y-3 h-full relative flex flex-col last:self-end overflow-y-hidden ">
           {menu.map((item) => {
             const Icon = icons[item.icon] || HomeIcon;
             return (
@@ -88,13 +88,14 @@ export default function Sidebar({ menu, className }: SidebarProps) {
                 title={item.label}
                 key={item.path}
                 to={item.path}
-                className={({ isActive }) => (isActive ? "ringd ring-gray-400 bg-blue-300 [box-shadow:rgba(0,_0,_0,_0.15)_1.95px_1.95px_2.6px]" : "hover:bg-gray-100") + " flex items-center gap-3 p-2 rounded  h-10 " }
+                className={({ isActive }) => (isActive ? "relative bg-[var(--color-primary)] text-white [box-shadow:rgba(0,_0,_0,_0.15)_0.95px_0.95px_2.6px]" : "hover:bg-gray-100") + " flex items-center gap-3 p-3 rounded  h-10 " }
               >
                 <Icon className="size-5" />
                 <p className={`${toggleTitles()}`}
                 >
                   {item.label}
                 </p>
+                <NavLink to={item.path} className={({ isActive }) => (isActive && !isSidebarOpen ? "absolute max-w-14 truncate text-[0.6rem] left-1/2 translate-x-[-50%] -bottom-3  text-black" : "hidden")}>{item.label.split(" ")[0]}</NavLink>
               </NavLink>
             );
           })}
