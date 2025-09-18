@@ -31,7 +31,7 @@ export default function Layout({ children }: LayoutProps) {
   }, [theme]);
 
   return (
-    <div className="flex flex-col h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="flex flex-col h-dvh bg-[var(--color-bg)] text-[var(--color-text)]">
       <Header />
       <div className="flex flex-1">
 
