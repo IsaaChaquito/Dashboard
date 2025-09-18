@@ -14,6 +14,6 @@
     { "label": "Pedidos", "icon": "CubeTransparentIcon", "path": "/pedidos" },
     { "label": "Herramientas", "icon": "WrenchScrewdriverIcon", "path": "/herramientas" },
     { "label": "Productos", "icon": "UsersIcon", "path": "/productos" },
-    { "label": "Configuraciónes del sistema", "icon": "Cog6ToothIcon", "path": "/configuracion" }
+    { "label": "Configuración del sistema", "icon": "Cog6ToothIcon", "path": "/configuracion" }
   ]
 }

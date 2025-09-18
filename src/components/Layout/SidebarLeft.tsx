@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import type { MenuItem } from "../../types/config";
-import { HomeIcon, ShoppingCartIcon, CubeIcon, UsersIcon, Cog6ToothIcon, BanknotesIcon, CubeTransparentIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
+import { HomeIcon, ShoppingCartIcon, CubeIcon, UsersIcon, Cog6ToothIcon, BanknotesIcon, CubeTransparentIcon, WrenchScrewdriverIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useUIStore } from "../../stores/ui/ui.store";
 import { useEffect } from "react";
 import { useWindowSize } from "../../hooks/useWindowSize";
@@ -15,7 +15,8 @@ const icons: Record<string, React.ComponentType<{ className?: string }>> = {
   Cog6ToothIcon,
   BanknotesIcon,
   CubeTransparentIcon,
-  WrenchScrewdriverIcon
+  WrenchScrewdriverIcon,
+  XMarkIcon,
 };
 
 interface SidebarProps {
@@ -74,12 +75,15 @@ export default function Sidebar({ menu, className }: SidebarProps) {
 
   
   return (
-    <div onClick={() => toggleSidebar()} className={`z-50 Wrapper absolute flex flex-col h-full select-none pointer-events-noned ${isSidebarOpen && resType === screenResolution.movil ? "bg-black/50 w-full overflow-hiddend" : "w-0 bg-transparent"}`}>
+    <div onClick={() => toggleSidebar()} className={`z-40 Wrapper absolute flex flex-col h-full select-none pointer-events-noned ${isSidebarOpen && resType === screenResolution.movil ? "bg-black/60 w-full overflow-hiddend" : "w-0 bg-transparent"}`}>
       <aside
         onClick={(e) => e.stopPropagation()}
-        className={`${className || ""} pointer-events-auto w-[var(--sidebar-width)] fixed z-20 top-[var(--header-height)] left-0 bottom-[calc(var(--footer-height)+var(--header-height))] h-[calc(100%-var(--header-height)-var(--footer-height))]  bg-white shadow-lg overflow-y-hidden transition-transform transform duration-150`}
+        className={`${className || ""} pointer-events-auto w-[var(--sidebar-width)] fixed z-20 top-[var(--header-height)] left-0 bottom-[calc(var(--footer-height)+var(--header-height))] h-[calc(100%-var(--header-height)-var(--footer-height))]  bg-white shadow-lg overflow-y-hidden transition-transform transform duration-150 `}
       >
-        {/* <h1 className="p-4 sm:p-2.5 font-bold text-lg sm:text-base">{company}</h1> */}
+
+        {/* <h1 className="p-4 sm:p-2.5 font-bold text-lg sm:text-base">{"Mi Empresa"}</h1> */}
+        {/* <XMarkIcon className=" top-3 right-3 size-6 cursor-pointer" onClick={() => toggleSidebar()} /> */}
+
         <nav className="p-2.5 py-4 space-y-3 h-full relative flex flex-col last:self-end overflow-y-hidden ">
           {menu.map((item) => {
             const Icon = icons[item.icon] || HomeIcon;
@@ -88,14 +92,13 @@ export default function Sidebar({ menu, className }: SidebarProps) {
                 title={item.label}
                 key={item.path}
                 to={item.path}
-                className={({ isActive }) => (isActive ? "relative bg-[var(--color-primary)] text-white [box-shadow:rgba(0,_0,_0,_0.15)_0.95px_0.95px_2.6px]" : "hover:bg-gray-100") + " flex items-center gap-3 p-3 rounded  h-10 " }
+                className={({ isActive }) => (isActive ? "relative bg-[var(--color-primary)] text-white [box-shadow:rgba(0,_0,_0,_0.15)_0.95px_0.95px_2.6px]" : "hover:bg-gray-100") + " flex items-center gap-3 p-3 rounded-md  h-10 " }
               >
                 <Icon className="size-5" />
                 <p className={`${toggleTitles()}`}
                 >
                   {item.label}
                 </p>
-                <NavLink to={item.path} className={({ isActive }) => (isActive && !isSidebarOpen ? "absolute max-w-14 truncate text-[0.6rem] left-1/2 translate-x-[-50%] -bottom-3  text-black" : "hidden")}>{item.label.split(" ")[0]}</NavLink>
               </NavLink>
             );
           })}

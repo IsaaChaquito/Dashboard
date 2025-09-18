@@ -12,8 +12,8 @@ export default function Header({ onMenuToggle }: HeaderProps) {
   const handleOnMenuToggle = () => onMenuToggle?.();  
 
   return (
-    <header className="fixed top-0 left-0 w-full h-[var(--header-height)] flex items-center justify-between p-4 bg-[var(--color-primary)] text-white">
-      <button className="  rounded cursor-pointer" onClick={ toggleSidebar ?? handleOnMenuToggle }>
+    <header className="z-50 fixed top-0 left-0 w-full h-[var(--header-height)] flex items-center justify-between p-4 bg-[var(--color-primary)] text-white">
+      <button className=" rounded cursor-pointer" onClick={ toggleSidebar ?? handleOnMenuToggle }>
         <Bars3Icon className="size-8" />
       </button>
       <h1 className="text-lg font-semibold">Dashboard</h1>
