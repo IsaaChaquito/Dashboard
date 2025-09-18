@@ -68,7 +68,7 @@ export default function Sidebar({ menu, className }: SidebarProps) {
     
     }
 
-    console.log(state);
+    // console.log(state);
 
   }, [windowWidth, isSidebarOpen]);
 
