@@ -39,7 +39,7 @@ export default function Sidebar({ menu, className }: SidebarProps) {
   function toggleTitles(){
     
     if( resType === screenResolution.movil || resType === screenResolution.tablet ){
-      return isSidebarOpen ? "block text-base truncate" : "hidden"
+      return isSidebarOpen ? "block text-base truncate max-w-36" : "hidden"
     }
 
     if( resType === screenResolution.desktop ){
@@ -92,13 +92,21 @@ export default function Sidebar({ menu, className }: SidebarProps) {
                 title={item.label}
                 key={item.path}
                 to={item.path}
-                className={({ isActive }) => (isActive ? "relative bg-[var(--color-primary)] text-white [box-shadow:rgba(0,_0,_0,_0.15)_0.95px_0.95px_2.6px]" : "hover:bg-gray-100") + " flex items-center gap-3 p-3 rounded-md  h-10 " }
+                className={({ isActive }) => (isActive ? "relative bg-[var(--color-primary)] text-white [box-shadow:rgba(0,_0,_0,_0.15)_0.95px_0.95px_2.6px]" : "hover:bg-gray-200") + " group flex items-center gap-3 p-3 rounded-md  h-10 " }
               >
-                <Icon className="size-5" />
+                
+                {/* <Icon className="size-5 group-hover:scale-120 duration-75" />
                 <p className={`${toggleTitles()}`}
                 >
                   {item.label}
-                </p>
+                </p> */}
+                {({ isActive }) => (
+                  <>
+                    {/* {isActive && <span className="text-xs text-green-500">Activo</span>} */}
+                    <Icon className={`${isActive ? 'scale-120' : ''} size-5 group-hover:scale-120 duration-75`} />
+                    <p className={toggleTitles()}>{item.label}</p>
+                  </>
+                )}
               </NavLink>
             );
           })}

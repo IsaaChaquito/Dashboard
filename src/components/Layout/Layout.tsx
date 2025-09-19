@@ -53,7 +53,7 @@ export default function Layout({ children }: LayoutProps) {
             </SimpleBar>
         </main>
       </div>
-      <Footer />
+      <Footer corporation={appConfig.company} />
     </div>
   );
 }
